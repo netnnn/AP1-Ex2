@@ -1,9 +1,12 @@
-#ifndef AP1_LINETOVECTOR_H
-#define AP1_LINETOVECTOR_H
+#ifndef LINETOVECTOR_H
+#define LINETOVECTOR_H
 
 #include <vector>
 using namespace std;
 
-vector<double> lineToVector();
+class LineToVector {
+    public:
+    static vector<double> lineToVector();
+};
 
 #endif

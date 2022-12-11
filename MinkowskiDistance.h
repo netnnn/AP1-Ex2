@@ -1,9 +1,17 @@
-#ifndef AP1_MINKOWSKIDISTANCE_H
-#define AP1_MINKOWSKIDISTANCE_H
+#ifndef MINKOWSKIDISTANCE_H
+#define MINKOWSKIDISTANCE_H
 
 #include <vector>
+#include "Distance.h"
 using namespace std;
 
-double getMinkowskiDistance(vector<double> vec1, vector<double> vec2, int vectorSizes, double p);
+class MinkowskiDistance : public Distance{
+    private:
+    double p;
+    
+    public:
+    MinkowskiDistance(double p);
+    double getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
+};
 
 #endif

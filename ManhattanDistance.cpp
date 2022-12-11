@@ -1,18 +1,24 @@
 #include <vector>
 #include <cmath>
 #include "ManhattanDistance.h"
-#include "MinkowskiDistance.h"
 using namespace std;
 
 /**
- * @brief Get the Manhattan Distance between two vectors.
- * 
- * @param vec1 vector 1
- * @param vec2 vector 2
- * @param vectorSizes the size of the two vectors
- * @return double the manhattan distance between the two vectors
- */
-double getManhattanDistance(vector<double> vec1, vector<double> vec2, int vectorSizes){
-    //calculating by the Manhatten distance formula by the minkowski formula.
-    return getMinkowskiDistance(vec1, vec2, vectorSizes, 1);
+* @brief Get the Euclidian Distance of two vectors of the same size
+* 
+* @param vec1 vector 1
+* @param vec2 vector 2
+* @param vectorSizes the size of the 2 vectors
+* @return double the Euclidian distance between the two vectors.
+*/
+double ManhattanDistance::getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes) {
+
+    //initializing the distance as 0
+    double distance = 0;
+
+    //calculating by the euclidian distance formula.
+    for (int i = 0; i < vectorSizes; i++) {
+        distance += abs(vec1[i] - vec2[i]);
+    }
+    return distance;
 }

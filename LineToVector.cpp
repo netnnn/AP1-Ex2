@@ -5,12 +5,12 @@
 using namespace std;
 
 /**
- * @brief a method that reads a line of the users input. The line should be doubles seperated by spaces. It then splits the
- * doubles from each other and pushes them into a vector and returns the vector. If the input isnt as expected, whether
- * it be non-number characters or too many spaces, it throws an error and exits the program.
- * @return vector<double> a vector of doubles
- */
-vector<double> lineToVector(){
+* @brief a method that reads a line of the users input. The line should be doubles seperated by spaces. It then splits the
+* doubles from each other and pushes them into a vector and returns the vector. If the input isnt as expected, whether
+* it be non-number characters or too many spaces, it throws an error and exits the program.
+* @return vector<double> a vector of doubles
+*/
+vector<double> LineToVector::lineToVector(){
     //Initializing a vector of doubles.
     vector<double> vec;
 
@@ -36,4 +36,3 @@ vector<double> lineToVector(){
     //Returning the vector built from the line.
     return vec;
 }
-

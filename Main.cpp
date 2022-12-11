@@ -1,63 +1,43 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include "LineToVector.h"
+#include "CanberraDistance.h"
+#include "ChebyshevDistance.h"
+#include "MinkowskiDistance.h"
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
-#include "ChebyshevDistance.h"
-#include "CanberraDistance.h"
-#include "MinkowskiDistance.h"
-using namespace std;
-/**
- * prints the distance by its precision, if distance
- * is int, then print one number only after the '.'
- * else print all the 16.
- * @param distance
- */
-void printByPrecision(double distance) {
-    cout.precision(16);
-    if (distance == floor(distance)) cout.precision(1);
-    cout << fixed << distance << endl;
-}
+#include "LineToVector.h"
+#include "Distance.h"
+#include <vector>
+#include <iostream>
 
-/**
- * @brief the main function which gets 2 lines and converts them into vectors and then prints the different
- * distances between them.
- * 
- * @return int 0 if the program ran successfully.
- */
+using namespace std;
+
 int main() {
 
-    //Getting 2 vectors from the users input.
-    vector<double> vec1 = lineToVector();
-    vector<double> vec2 = lineToVector();
+    Distance* x;
+    ManhattanDistance man = ManhattanDistance();
+    EuclidianDistance euc = EuclidianDistance();
+    CanberraDistance can = CanberraDistance();
+    ChebyshevDistance che = ChebyshevDistance();
+    MinkowskiDistance min = MinkowskiDistance(3);
 
-    //If they arent the same size, cant calculate distance, so exit.
-    if (vec1.size() != vec2.size()) {
-        cout << "Vectors are different sizes, cant calculate distance" << endl;
-        exit(0);
-    }
+    vector<double> a = LineToVector::lineToVector();
+    vector<double> b = LineToVector::lineToVector();
 
-    //They have the same size.
-    int vectorSizes = vec1.size();
+    int c;
+    cin >> c;
+    cin.clear();
 
-    //Getting all the distances
-    double euclideanDistance = getEuclidianDistance(vec1, vec2, vectorSizes);
-    double manhattanDistance = getManhattanDistance(vec1, vec2, vectorSizes);
-    double chebyshevDistance = getChebyshevDistance(vec1, vec2, vectorSizes);
-    double canberraDistance = getCanberraDistance(vec1, vec2, vectorSizes);
-    double minkowskiDistance = getMinkowskiDistance(vec1, vec2, vectorSizes, 2);
+    if(c == 1)
+        x = dynamic_cast<ManhattanDistance*>(&man);
+    if(c == 2)
+        x = dynamic_cast<EuclidianDistance*>(&euc);
+    if(c == 3)
+        x = dynamic_cast<CanberraDistance*>(&can);
+    if(c == 4)
+        x = dynamic_cast<ChebyshevDistance*>(&che);
+    if(c == 5)
+        x = dynamic_cast<MinkowskiDistance*>(&min);
 
-    //Printing all the distances accordingly. if the number is an int, with precision 1. else with precision 16.
-    printByPrecision(euclideanDistance);
-    printByPrecision(manhattanDistance);
-    printByPrecision(chebyshevDistance);
-    printByPrecision(canberraDistance);
-    printByPrecision(minkowskiDistance);
-
-    return 0;
+    double d = x->getDistance(a,b,a.size());
+    cout << d << endl;
 
 }
-
-//compile with g++ *.cpp
-//then run ./a.out

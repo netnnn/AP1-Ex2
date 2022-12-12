@@ -3,10 +3,6 @@
 #include "MinkowskiDistance.h"
 using namespace std;
 
-double p;
-
-MinkowskiDistance::MinkowskiDistance(double p) : p(p) {}
-
 /**
 * @brief Get the Minkowski Distance of two vectors of the same size and a given constant P.
 * 
@@ -23,8 +19,8 @@ double MinkowskiDistance::getDistance(vector<double> vec1, vector<double> vec2, 
 
     //calculating by the minkowski distance formula.
     for (int i = 0; i < vectorSizes; i++) {
-        distance += pow(abs(vec1[i] - vec2[i]), p);
+        distance += pow(abs(vec1[i] - vec2[i]), P);
     }
-    if (p >= 1) return pow(distance, 1/p);
+    if (P >= 1) return pow(distance, (double) 1/P);
     else return distance;
 }

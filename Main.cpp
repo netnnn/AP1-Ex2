@@ -17,7 +17,7 @@ int main() {
     EuclidianDistance euc = EuclidianDistance();
     CanberraDistance can = CanberraDistance();
     ChebyshevDistance che = ChebyshevDistance();
-    MinkowskiDistance min = MinkowskiDistance(3);
+    MinkowskiDistance min = MinkowskiDistance();
 
     vector<double> a = LineToVector::lineToVector();
     vector<double> b = LineToVector::lineToVector();
@@ -27,15 +27,15 @@ int main() {
     cin.clear();
 
     if(c == 1)
-        x = dynamic_cast<ManhattanDistance*>(&man);
+        x = &man;
     if(c == 2)
-        x = dynamic_cast<EuclidianDistance*>(&euc);
+        x = &euc;
     if(c == 3)
-        x = dynamic_cast<CanberraDistance*>(&can);
+        x = &can;
     if(c == 4)
-        x = dynamic_cast<ChebyshevDistance*>(&che);
+        x = &che;
     if(c == 5)
-        x = dynamic_cast<MinkowskiDistance*>(&min);
+        x = &min;
 
     double d = x->getDistance(a,b,a.size());
     cout << d << endl;

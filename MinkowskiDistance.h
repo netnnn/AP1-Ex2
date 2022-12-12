@@ -3,14 +3,11 @@
 
 #include <vector>
 #include "Distance.h"
+#define P 3 //CONSTANT P FOR MINKOWSKI
 using namespace std;
 
 class MinkowskiDistance : public Distance{
-    private:
-    double p;
-    
     public:
-    MinkowskiDistance(double p);
     double getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
 };
 

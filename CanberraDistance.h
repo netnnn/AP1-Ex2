@@ -1,9 +1,13 @@
-#ifndef AP1_CANBERRADISTANCE_H
-#define AP1_CANBERRADISTANCE_H
+#ifndef CANBERRADISTANCE_H
+#define CANBERRADISTANCE_H
 
 #include <vector>
+#include "Distance.h"
 using namespace std;
 
-double getCanberraDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
+class CanberraDistance : public Distance{
+    public:
+    double getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
+};
 
 #endif

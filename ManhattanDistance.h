@@ -1,9 +1,12 @@
-#ifndef AP1_MANHATTANDISTANCE_H
-#define AP1_MANHATTANDISTANCE_H
+#ifndef MANHATTANDISTANCE_H
+#define MANHATTANDISTANCE_H
 
 #include <vector>
+#include "Distance.h"
 using namespace std;
 
-double getManhattanDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
-
+class ManhattanDistance : public Distance{
+    public:
+    double getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
+};
 #endif

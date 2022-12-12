@@ -1,16 +1,12 @@
-//
-// Created by evias on 11/12/2022.
-//
-#include "vector"
+#ifndef DISTANCE_H
+#define DISTANCE_H
+
+#include <vector>
 using namespace std;
-#ifndef AP1_EX2_DISTANCE_H
-#define AP1_EX2_DISTANCE_H
 
-
-class Distance {
-public:
-    double getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
+class Distance{
+    public:
+    virtual double getDistance(vector<double> vec1, vector<double> vec2, int vectorSizes);
 };
 
-
-#endif //AP1_EX2_DISTANCE_H
+#endif

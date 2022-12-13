@@ -19,6 +19,10 @@ int main(int argv, char* args[]) {
     const char *dis;
     string filePath;
     int k = 0;
+    if(argv != 4) {
+        cout << "ERROR! Illegal arguments" << endl;
+        exit(0);
+    }
     try {
         k = stoi(args[1]);
         filePath = args[2];
@@ -37,14 +41,18 @@ int main(int argv, char* args[]) {
 
     if(strcmp("MAN", dis) == 0)
         x = &man;
-    if(strcmp("AUC", dis) == 0)
+    else if(strcmp("AUC", dis) == 0)
         x = &auc;
-    if(strcmp("CAN", dis) == 0)
+    else if(strcmp("CAN", dis) == 0)
         x = &can;
-    if(strcmp("CHB", dis) == 0)
+    else if(strcmp("CHB", dis) == 0)
         x = &che;
-    if(strcmp("MIN", dis) == 0)
+    else if(strcmp("MIN", dis) == 0)
         x = &min;
+    else {
+        cout << "ERROR! Invalid distance type" << endl;
+        exit(0);
+    }
 
     while (true) {
         vector<string> vecStr;
@@ -64,7 +72,14 @@ int main(int argv, char* args[]) {
         }
 
         map<vector<double>, string> vecMap;
-        vecMap =IfstreamToMap::ifstreamToMap(filePath, vec.size()); //scan into vecMap
+        vecMap = IfstreamToMap::ifstreamToMap(filePath, vec.size()); //scan into vecMap
+        if (vecMap.size() == 0){
+            cout << "ERROR! no valid vectors to calculate distance with" << endl;
+            continue;
+        }
+        if (vecMap.size() < k){
+            k = vecMap.size();
+        }
 
         list<vector<double>> KDistanceList;
         KDistanceList = KNN::knnList(vec, x, vecMap, k);

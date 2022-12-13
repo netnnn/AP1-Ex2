@@ -10,9 +10,13 @@ using namespace std;
 
 map<vector<double>, string> IfstreamToMap::ifstreamToMap(string filePath, int vectorSize){
     ifstream file;
-    file.open(filePath);
-
     map<vector<double>, string> map;
+
+    file.open(filePath);
+    if(!file) {
+        cout << "ERROR! File not found" << endl;
+        exit(0);
+    }
 
     string line;
     while(getline(file,line)){
@@ -35,5 +39,7 @@ map<vector<double>, string> IfstreamToMap::ifstreamToMap(string filePath, int ve
 
         map.insert({vecDbl, vecStr[i]});
     }
+    file.close();
     return map;
+    
 }

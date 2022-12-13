@@ -2,24 +2,27 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "IfstreamToMap.h"
 #include "StrToVector.h"
 
 using namespace std;
 
-map<vector<double>, string> IfstreamToMap::ifstreamToMap(ifstream ifstream, int vectorSize){
-    map<vector<double>, string> map;
-    while(!ifstream.eof()){
+map<vector<double>, string> IfstreamToMap::ifstreamToMap(string filePath, int vectorSize){
+    ifstream file;
+    file.open(filePath);
 
-        //Initializing a string and reading a line from the users input into it and constructing a stream from the string.
-        string line;
-        getline(ifstream, line);
+    map<vector<double>, string> map;
+
+    string line;
+    while(getline(file,line)){
+
         vector<string> vecStr = StrToVector::strToVector(line, ',');
         if (vecStr.size()-1 != vectorSize) continue;
 
         vector<double> vecDbl;
-        int i = 0;
-        for(i; i < vecStr.size()-1; i++){
+        int i;
+        for(i = 0; i < vecStr.size()-1; i++){
             try {
                 double d = stod(vecStr[i]);
                 vecDbl.push_back(d);

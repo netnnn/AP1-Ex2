@@ -19,8 +19,8 @@ vector<string> StrToVector::strToVector(string str, char delim){
     //Initializing a string and reading a line from the users input into it and constructing a stream from the string.
     stringstream lineStream(str);
 
-    /* Splitting the line according to the space character and storing each part in a string called word, then trying
-    to convert it to a double. If it succeeds, push it into the vector. If not, its an error so exit. */
+    /* Splitting the line according to the delim character and storing each part in a string called word,
+    then pushing it into the vector. */
     string word;
     while(getline(lineStream, word, delim)){
         vec.push_back(word);

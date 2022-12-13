@@ -10,7 +10,7 @@ using namespace std;
 
 class IfstreamToMap{
     public:
-    static map<vector<double>, string> ifstreamToMap(ifstream ifstream, int vectorSize);
+    static map<vector<double>, string> ifstreamToMap(string filePath, int vectorSize);
 };
 
 #endif

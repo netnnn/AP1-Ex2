@@ -5,32 +5,67 @@
 #include "ManhattanDistance.h"
 #include "StrToVector.h"
 #include "Distance.h"
+#include "KNN.h"
 #include <vector>
 #include <iostream>
-#include <fstream>
-#include "IfstreamToMap.h"
-#include <map>
+#include "string.h"
 
 using namespace std;
 
-int main() {
-
-    string a;
-    getline(cin, a);
-    vector<string> v = StrToVector::strToVector(a, ' ');
-
-    for (auto x : v) {
-        cout << x << " ";
+int main(int argv, char** args) {
+    const char *dis;
+    int k = 0;
+    try {
+        k = stoi(args[1]);
+        string file = args[2];
+        dis = args[3];
+    } catch (exception exception) {
+        cout << "invalid arguments" << endl;
+        exit(0);
     }
+    Distance* x;
+    ManhattanDistance man = ManhattanDistance();
+    EuclidianDistance euc = EuclidianDistance();
+    CanberraDistance can = CanberraDistance();
+    ChebyshevDistance che = ChebyshevDistance();
+    MinkowskiDistance min = MinkowskiDistance();
 
-    string filePath= "/home/netanel/Desktop/Uni/AP1/AP1-Ex2/datasets/iris/iris_classified.csv";
-    map<vector<double>, string> map = IfstreamToMap::ifstreamToMap(filePath, v.size());
+    if(strcmp("MAN", dis) == 0)
+        x = &man;
+    if(strcmp("AUC", dis) == 0)
+        x = &euc;
+    if(strcmp("CAN", dis) == 0)
+        x = &can;
+    if(strcmp("CHB", dis) == 0)
+        x = &che;
+    if(strcmp("MIN", dis) == 0)
+        x = &min;
 
-    for(auto i = map.begin(); i != map.end(); i++) {
-        for (auto x : i->first) {
-            cout << x << " ";
+//    string c;
+//    cin >> c;
+//    cin.clear();
+
+    while (true) {
+        vector<double> vec;
+        try {
+            vec = LineToVector::lineToVector();
+        } catch (exception e) {
+            cout << "ERROR - illegal vector arguments" << endl;
+            continue;
         }
-        cout << i->second;
-        cout << "\n";
+
+        map<vector<double>, string> vecMap; //scan into vecMap
+
+        map<double, vector<double>> KDistanceMap;
+        KDistanceMap = KNN::knnMap(vec, *x, vecMap, k);
+
+        string maxType; //the flower type that was the most common in the map
+        maxType = KNN::findVectorType(KDistanceMap, vecMap);
+
+        cout << maxType << endl;
+
     }
+//    vector<double> b = LineToVector::lineToVector();
+//    double d = x->getDistance(a,b,a.size());
+//    cout << d << endl;
 }

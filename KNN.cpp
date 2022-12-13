@@ -4,6 +4,7 @@
 #include "Distance.h"
 #include <list>
 #include <map>
+#include <string>
 using namespace std;
 
 class vectorCmp {
@@ -23,7 +24,7 @@ public:
     }
 };
 
-list<vector<double>> knnList(vector<double> vector1, Distance* distance, map<vector<double>, string> vecMap, int k) {
+list<vector<double>> KNN::knnList(vector<double> vector1, Distance* distance, map<vector<double>, string> vecMap, int k) {
     vectorCmp vc(vector1, distance);
     list<vector<double>> vecList;
     for (auto v : vecMap) {
@@ -40,7 +41,7 @@ list<vector<double>> knnList(vector<double> vector1, Distance* distance, map<vec
     return KList;
 }
 
-string findVectorType(list<vector<double>> KDistanceList, map<vector<double>, string> vecMap){
+string KNN::findVectorType(list<vector<double>> KDistanceList, map<vector<double>, string> vecMap){
     map<string, int> vecType;
     map<string, int>::iterator typeIter;
 

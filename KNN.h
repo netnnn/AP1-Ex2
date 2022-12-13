@@ -1,11 +1,13 @@
-//
-// Created by evias on 11/12/2022.
-//
-
-#ifndef AP1_EX2_KNN_H
-#define AP1_EX2_KNN_H
+#ifndef KNN_H
+#define KNN_H
 
 #include <list>
+#include <map>
+#include <vector>
+#include "Distance.h"
+#include <string>
+
+using namespace std;
 
 class KNN {
 public:
@@ -13,5 +15,4 @@ public:
     static string findVectorType(list<vector<double>> KDistanceList, map<vector<double>, string> vecMap);
 };
 
-
-#endif //AP1_EX2_KNN_H
+#endif

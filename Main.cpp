@@ -3,41 +3,31 @@
 #include "MinkowskiDistance.h"
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
-#include "LineToVector.h"
+#include "StrToVector.h"
 #include "Distance.h"
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 int main() {
 
-    Distance* x;
-    ManhattanDistance man = ManhattanDistance();
-    EuclidianDistance euc = EuclidianDistance();
-    CanberraDistance can = CanberraDistance();
-    ChebyshevDistance che = ChebyshevDistance();
-    MinkowskiDistance min = MinkowskiDistance();
+    string a;
+    cin >> a;
+    vector<string> v = StrToVector::strToVector(a, '\n');
+    for (auto x : v) {
+        cout << x << " ";
+    }
 
-    vector<double> a = LineToVector::lineToVector();
-    vector<double> b = LineToVector::lineToVector();
-
-    int c;
-    cin >> c;
-    cin.clear();
-
-    if(c == 1)
-        x = &man;
-    if(c == 2)
-        x = &euc;
-    if(c == 3)
-        x = &can;
-    if(c == 4)
-        x = &che;
-    if(c == 5)
-        x = &min;
-
-    double d = x->getDistance(a,b,a.size());
-    cout << d << endl;
-
+    ifstream file;
+    file.open("iris_classified.csv");
+    string line;
+    while(getline(file, line)) {
+        vector<string> b = StrToVector::strToVector(line, ',');
+        for (auto x : b) {
+            cout << x << " ";
+        }
+        cout << "\n";
+    }
 }

@@ -30,7 +30,7 @@ int main(int argv, char* args[]) {
 
     Distance* x;
     ManhattanDistance man = ManhattanDistance();
-    EuclidianDistance euc = EuclidianDistance();
+    EuclidianDistance auc = EuclidianDistance();
     CanberraDistance can = CanberraDistance();
     ChebyshevDistance che = ChebyshevDistance();
     MinkowskiDistance min = MinkowskiDistance();
@@ -38,7 +38,7 @@ int main(int argv, char* args[]) {
     if(strcmp("MAN", dis) == 0)
         x = &man;
     if(strcmp("AUC", dis) == 0)
-        x = &euc;
+        x = &auc;
     if(strcmp("CAN", dis) == 0)
         x = &can;
     if(strcmp("CHB", dis) == 0)
@@ -68,6 +68,13 @@ int main(int argv, char* args[]) {
 
         list<vector<double>> KDistanceList;
         KDistanceList = KNN::knnList(vec, x, vecMap, k);
+
+        for (vector<double> v : KDistanceList) {
+            for (auto x : v) {
+                cout << x << " ";
+            }
+            cout << endl;
+        }
 
         string maxType; //the flower type that was the most common in the map
         maxType = KNN::findVectorType(KDistanceList, vecMap);

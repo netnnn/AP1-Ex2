@@ -18,9 +18,9 @@ public:
     bool operator()(const vector<double>& vec1,const vector<double>& vec2) {
         if (distance->getDistance(vec, vec1, vec.size())
             < distance->getDistance(vec, vec2, vec.size())) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 };
 

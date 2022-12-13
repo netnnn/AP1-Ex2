@@ -3,27 +3,31 @@
 #include "MinkowskiDistance.h"
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
-#include "LineToVector.h"
+#include "StrToVector.h"
+#include "IfstreamToMap.h"
 #include "Distance.h"
 #include "KNN.h"
 #include <vector>
 #include <iostream>
 #include "string.h"
-#include "map"
+#include <map>
+#include <list>
 
 using namespace std;
 
-int main(int argv, char** args) {
+int main(int argv, char* args[]) {
     const char *dis;
+    string filePath;
     int k = 0;
     try {
         k = stoi(args[1]);
-        string file = args[2];
+        filePath = args[2];
         dis = args[3];
     } catch (exception exception) {
         cout << "invalid arguments" << endl;
         exit(0);
     }
+
     Distance* x;
     ManhattanDistance man = ManhattanDistance();
     EuclidianDistance euc = EuclidianDistance();
@@ -42,10 +46,6 @@ int main(int argv, char** args) {
     if(strcmp("MIN", dis) == 0)
         x = &min;
 
-//    string c;
-//    cin >> c;
-//    cin.clear();
-
     while (true) {
         vector<string> vecStr;
         vector<double> vec;
@@ -63,21 +63,17 @@ int main(int argv, char** args) {
             continue;
         }
 
+        map<vector<double>, string> vecMap;
+        vecMap =IfstreamToMap::ifstreamToMap(filePath, vec.size()); //scan into vecMap
 
-        map<vector<double>, string> vecMap; //scan into vecMap
-
-        map<double, vector<double>> KDistanceMap;
-        KDistanceMap = KNN::knnMap(vec, *x, vecMap, k);
+        list<vector<double>> KDistanceList;
+        KDistanceList = KNN::knnList(vec, x, vecMap, k);
 
         string maxType; //the flower type that was the most common in the map
-        maxType = KNN::findVectorType(KDistanceMap, vecMap);
+        maxType = KNN::findVectorType(KDistanceList, vecMap);
 
         cout << maxType << endl;
 
     }
-//    vector<double> b = LineToVector::lineToVector();
-//    double d = x->getDistance(a,b,a.size());
-//    cout << d << endl;
-//    hi
 
 }

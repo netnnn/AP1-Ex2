@@ -78,5 +78,6 @@ int main(int argv, char** args) {
 //    vector<double> b = LineToVector::lineToVector();
 //    double d = x->getDistance(a,b,a.size());
 //    cout << d << endl;
+//    hi
 
 }

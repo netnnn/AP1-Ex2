@@ -7,7 +7,9 @@
 
 
 class KNN {
-
+public:
+    static map<double, vector<double>> knnMap(vector<double> vector1, Distance distance, map<vector<double>, string> vecMap, int k);
+    static string findVectorType(map<double, vector<double>> KDistanceMap, map<vector<double>, string> vecMap);
 };
 
 

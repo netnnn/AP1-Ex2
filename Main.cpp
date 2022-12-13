@@ -3,7 +3,7 @@
 #include "MinkowskiDistance.h"
 #include "EuclidianDistance.h"
 #include "ManhattanDistance.h"
-#include "LineToVector.h"
+#include "StrToVector.h"
 #include "Distance.h"
 #include "KNN.h"
 #include <vector>
@@ -68,5 +68,4 @@ int main(int argv, char** args) {
 //    vector<double> b = LineToVector::lineToVector();
 //    double d = x->getDistance(a,b,a.size());
 //    cout << d << endl;
-
 }

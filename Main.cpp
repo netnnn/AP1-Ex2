@@ -84,12 +84,12 @@ int main(int argv, char* args[]) {
         list<vector<double>> KDistanceList;
         KDistanceList = KNN::knnList(vec, x, vecMap, k);
 
-        for (vector<double> v : KDistanceList) {
-            for (auto x : v) {
-                cout << x << " ";
-            }
-            cout << endl;
-        }
+        // for (vector<double> v : KDistanceList) {
+        //     for (auto x : v) {
+        //         cout << x << " ";
+        //     }
+        //     cout << endl;
+        // }
 
         string maxType; //the flower type that was the most common in the map
         maxType = KNN::findVectorType(KDistanceList, vecMap);
